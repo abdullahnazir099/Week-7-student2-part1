@@ -3,23 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(users => {
             const usersContainer = document.getElementById('users');
-            usersContainer.innerHTML = '';
-
-            users.forEach(user => {
-                const row =
-                    ` <tr>
-               <td>${user.username}</td>
-               <td>${user.email}</td>
-               <td>${user.signup_date}</td>
-               </tr>
- 
-            `;
-                usersContainer.innerHTML += row;
-            });
-
+            const userList = users.map(user =>
+               ` 
+               <li>Name :${user.username} - Email :${user.email}, 
+               Signed up on: ${user.signup_date}</li>`)
+            .join('');
+            usersContainer.innerHTML = `<ul>${userList}</ul>`;
         })
         .catch(error => console.error('Error fetching users:', error));
-
 
 
 
@@ -29,21 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(products => {
             const productsContainer = document.getElementById('products');
-            productsContainer.innerHTML = '';
-
-            products.forEach(product => {
-                const row =
-                    `
-                    <tr>
-                    <td>${product.product_name}</td>
-                    <td>${product.prodrct_price}</td>
-                    <td>${product.category}</td>
-                    </tr>
+            const productList = products.map(product => `
+          
              
-                
-                `;
-                productsContainer.innerHTML += row;
-            });
+                  <li class="product-item">
+                    <span class="product-name">${product.product_name}</span>
+                    <span class="product-price">$${product.product_price}</span>
+                    <span class="product-category">Category: ${product.category}</span>
+                  </li>
+                `).join('');
+            productsContainer.innerHTML = `<ul class="product-list">${productList}</ul>`;
         })
         .catch(error => console.error('Error fetching products:', error));
 
@@ -52,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(orders => {
             const ordersContainer = document.getElementById('orders');
-            const orderList = orders.map(order => `
+            const orderList = orders.map(order=> `
           
             <li class="order-item">
               <span class="order-id">ID:${order.order_id}</span>
@@ -62,11 +48,11 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="order_date">:Order date ${order.order_date}</span>  
             </li>
           `).join('');
-            ordersContainer.innerHTML = `<ul class="order-list">${orderList}</ul>`;
-
+      ordersContainer.innerHTML = `<ul class="order-list">${orderList}</ul>`;
+           
         })
         .catch(error => console.error('Error fetching orders:', error));
 
 
-
+        
 });
