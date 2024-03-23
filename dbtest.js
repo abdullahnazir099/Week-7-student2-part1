@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const productList = products.map(product => `
           
              
-                  <li class="product-item">
-                    <span class="product-name">${product.product_name}</span>
-                    <span class="product-price">$${product.product_price}</span>
-                    <span class="product-category">Category: ${product.category}</span>
+                  <li >
+                    Product name :${product.product_name}-
+                    Product price :${product.product_price}-
+                    Product category : ${product.category}-
                   </li>
                 `).join('');
-            productsContainer.innerHTML = `<ul class="product-list">${productList}</ul>`;
+            productsContainer.innerHTML = `<ul>${productList}</ul>`;
         })
         .catch(error => console.error('Error fetching products:', error));
 
@@ -40,15 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const ordersContainer = document.getElementById('orders');
             const orderList = orders.map(order=> `
           
-            <li class="order-item">
-              <span class="order-id">ID:${order.order_id}</span>
-              <span class="username">Name:${order.username}</span>
-              <span class="product-name">Product name: ${order.product_name}</span>
-              <span class="quantity">Quantity: ${order.quantity}</span>
-              <span class="order_date">:Order date ${order.order_date}</span>  
+            <li >
+             ID:${order.order_id}
+             Name:${order.username}
+            Product name: ${order.product_name}
+            Quantity: ${order.quantity}
+          Order date: ${order.order_date}  
             </li>
           `).join('');
-      ordersContainer.innerHTML = `<ul class="order-list">${orderList}</ul>`;
+      ordersContainer.innerHTML = `<ul >${orderList}</ul>`;
            
         })
         .catch(error => console.error('Error fetching orders:', error));
